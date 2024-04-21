@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = `
+<TR>
+<TD DIR=LTR ALIGN=RIGHT>10400</TD>
+<TD DIR=LTR ALIGN=LEFT>B008G001</TD>
+<TD DIR=LTR ALIGN=LEFT>V_Rightnest</TD>
+<TD DIR=LTR ALIGN=LEFT>村级调查界线抽样检查</TD>
+<TD DIR=LTR ALIGN=LEFT>三调规则</TD>
+<TD DIR=LTR ALIGN=LEFT>权属界线上图检查</TD>
+<TD DIR=LTR ALIGN=LEFT>RuleRightNestedChecker</TD>
+<TD DIR=LTR ALIGN=LEFT>SouthGIS.QualityChecker.dll</TD>
+<TD DIR=LTR ALIGN=RIGHT>1</TD>
+<TD DIR=LTR ALIGN=RIGHT>1</TD>
+<TD DIR=LTR ALIGN=RIGHT>0</TD>
+<TD></TD>
+</TR>
+<TR>
+<TD DIR=LTR ALIGN=RIGHT>10414</TD>
+<TD DIR=LTR ALIGN=LEFT>C001G016</TD>
+<TD DIR=LTR ALIGN=LEFT>V_AdjustLandInherit</TD>
+<TD DIR=LTR ALIGN=LEFT>可调整地类上图检查</TD>
+<TD DIR=LTR ALIGN=LEFT>三调规则</TD>
+<TD DIR=LTR ALIGN=LEFT>自动检查2上</TD>
+<TD DIR=LTR ALIGN=LEFT>RuleAdjustableLandClassInheritabilityChecker</TD>
+<TD DIR=LTR ALIGN=LEFT>SouthGIS.QualityChecker.dll</TD>
+<TD DIR=LTR ALIGN=RIGHT>1</TD>
+<TD DIR=LTR ALIGN=RIGHT>1</TD>
+<TD DIR=LTR ALIGN=RIGHT>0</TD>
+`
+
+        // let tr = /<TR>\s([<>\/=\w\d\s\.\u4E00-\u9FA5]+)\s<\/TR>/i
+        let reg = />[\w\d\s\u4E00-\u9FA5]*<\//ig
+        let array = str.split('</TR>')
+        let array1 = []
+        let array2 = []
+        array.forEach(ele => {
+            array1.push(ele.match(reg))
+        })
+        let t1 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l']
+        let t2 = []
+        for (let i = 0; i < array1.length; i++) {
+            for (let j = 0; j < array1[i].length; j++) {
+                let obj = {}
+                let array3 = []
+
+                array1[i].forEach(ele => {
+                    let strings = ''
+                    if (!(ele === null)) {
+                        let a = ele.split('')
+                        a.splice(0, 1)
+                        a.splice(a.length - 2, 2)
+                        a.forEach(ele => {
+                            strings += ele
+                        })
+                    }
+                    array3.push(strings)
+                })
+                t2.push(array3)
+            }
+        }
+
+        let ceshi = []
+        t2.forEach((ele) => {
+            let obj = {}
+            ele.forEach((s, index) => {
+                obj[t1[index]] = s
+                ceshi.push(obj)
+            })
+        })
+        console.log(ceshi)
+    </script>
+</body>
+
+</html>

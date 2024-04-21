@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="img">
+
+    </div>
+    <script>
+        let dom = document.getElementById('img')
+
+
+        function waitPromise() {
+            return new Promise((reslove,reject)=>{
+                setTimeout(() => {
+                    reslove()
+                }, 5000);
+            })
+        }
+
+        function PromiseImg(list, max = 1) {
+            const imgPromiseList = list.map((item, index) => {
+                return new Promise((reslove, reject) => {
+                    const img = new Image()
+                    img.onload = function () {
+                        reslove(img)
+                    }
+                    img.onerror = function () {
+                        reject('2')
+                    }
+                    img.src = item
+                })
+            })
+
+            Promise.all([...imgPromiseList, waitPromise()]).then(function (posts) {
+                console.log(posts)
+                posts.forEach(function (item) {
+                    dom.appendChild(item)
+                })
+            }).catch(function (reason) {
+                console.log('error', reason)
+            })
+        }
+        const list = [
+            'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg',
+            'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3173584241,3533290860&fm=26&gp=0.jpg'
+        ]
+        PromiseImg(list)
+
+        // const img = new Image()
+        // img.onload = function () {
+        //     console.log('加载完毕')
+        // }
+        // img.src = 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3173584241,3533290860&fm=26&gp=0.jpg'
+
+        // let dom = document.getElementById('img')
+    </script>
+</body>
+
+</html>

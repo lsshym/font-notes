@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Father {
+            constructor() {
+                this.name = 'li'
+            }
+        }
+        class Childern extends Father {
+            constructor() {
+                // 执行父类的constructor
+                super()
+                this.color = 'blue'
+            }
+        }
+        let child = new Childern()
+        console.log(child)
+    </script>
+</body>
+</html>

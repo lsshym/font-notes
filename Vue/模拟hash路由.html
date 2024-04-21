@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li><a href="#route1">路由1</a></li>
+        <li><a href="#route2">路由2</a></li>
+        <li><a href="#route3">路由3</a></li>
+    </ul>
+    <p>记得测试前进后退</p>
+    <div id="routeId"></div>
+    <script>
+        function watchHash(event) {
+            console.log(event.oldURL);
+            console.log(event.newURL);
+            console.log(window.location.hash);
+            // #就不要了
+            let hashStr = window.location.hash.slice(1)
+            if (hashStr === "route1") {
+                dom.innerHTML = "这是路由1"
+            } else if (hashStr === "route2") {
+                dom.innerHTML = "这是路由2"
+            } else if (hashStr === "route3") {
+                dom.innerHTML = "这是路由3"
+            }
+        }
+        let dom = document.getElementById('routeId');
+        window.addEventListener("hashchange", watchHash)
+        
+    </script>
+</body>
+
+</html>

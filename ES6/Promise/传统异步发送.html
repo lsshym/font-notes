@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let ajax = function (callback) {
+        //     console.log('执行')
+        //     setTimeout(() => {
+        //         callback && callback.call()
+        //     }, 1000);
+        // }
+        // ajax(function(){
+        //     console.log('请求1')
+        //     ajax(function(){
+        //         console.log('请求二')
+        //     })
+        // })
+        // let ajax = function () {
+        //     console.log('执行')
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             resolve()
+        //         }, 1000);
+        //     })
+        // }
+        // ajax().then(function () {
+        //     console.log('请求完了执行这个')
+        // })
+        let ajax = function (callback) {
+            console.log('执行')
+            // 请求成功后
+            setTimeout(() => {
+                callback && callback.call(this, 'test')
+            }, 1000)
+        }
+
+        ajax(function (reqs) {
+            console.log('请求1')
+            console.log(reqs)
+        })
+    </script>
+</body>
+
+</html>

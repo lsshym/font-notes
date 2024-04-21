@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.myCall = function(context) {
+            if(typeof this !== 'function') {
+                throw new TypeError('不是函数')
+            }
+            context = context || window;
+            context.fn = this;
+            const args = [...arguments].slice(1);
+            const result = context.fn(...args)
+            delete context.fn;
+            return result
+        }
+        function test() {
+            console.log(this.name)
+        }
+        var t1 = {
+            name: 'cao'
+        }
+        console.log(test.myCall(t1))
+        // 这里会多打印一个undefinded，因为这个函数本身没有返回值
+    </script>
+</body>
+</html>

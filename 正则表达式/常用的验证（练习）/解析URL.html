@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function parseParam(url) {
+            const paramsStr = /.+\?(.+)/.exec(url)[1];
+            const paramsArr = paramsStr.split('&')
+            let obj = {}
+            paramsArr.forEach(ele=> {
+                if(/=/.test(ele)) {
+
+                } else {
+                    obj[ele] = true
+                }
+            })
+            console.log(paramsArr)
+        }
+        let url = 'http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&enabled';
+        parseParam(url)
+    </script>
+</body>
+</html>

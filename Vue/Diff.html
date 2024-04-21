@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{items}}
+        <ul>
+            <item v-for="i in items" :value="i" :key="i"></item>
+        </ul>
+        <button @click="addValue">AddValue</button>
+        <ul>
+            <item v-for="(i, index) in items" :value="i" :key="index+i"></item>
+        </ul>
+    </div>
+    <script>
+        console.clear()
+        Vue.component("item", {
+            props: ["value"],
+            data() {
+                return {
+                    internalValue: this.value
+                }
+            },
+            template: `<li>Internal: {{internalValue}} Prop: {{value}}</li>`
+        })
+        new Vue({
+            el: "#app",
+            data: {
+                items: [1, 2, 3, 4, 5]
+            },
+            methods: {
+                addValue() {
+                    this.items.splice(this.items.length / 2, 0, this.items.length + 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

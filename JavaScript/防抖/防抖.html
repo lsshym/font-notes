@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="input">
+    <script>
+        // function debounce(fn, wait) {
+        //     var timeOut = null
+        //     console.log(11111)
+        //     console.log(this)
+        //     return function () {
+        //         console.log('tt')
+        //         console.log(this)
+        //         // 一直执行，timeout一直在被赋值，一直被清空，直到最后一次
+        //         if (timeOut !== null) {
+        //             clearTimeout(timeOut)
+        //         }
+        //         timeOut = setTimeout(fn, wait);
+        //     }
+        // }
+        // 防抖函数
+        const debounce = (fn, delay) => {
+            let timer = null;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    console.log(this)
+                    fn.apply(this, args);
+                }, delay);
+            };
+        };
+        var input = document.getElementById('input')
+        input.addEventListener('keydown', debounce(function () {
+            console.log(666)
+        }, 1000))
+    </script>
+</body>
+
+</html>

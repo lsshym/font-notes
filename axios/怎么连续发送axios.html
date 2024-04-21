@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        // 为给定 ID 的 user 创建请求 
+        let a = axios.get('http://192.168.10.163:3000/mock/216/logaudit/sql/listSqlLogColumns');
+        let b = axios.get('http://192.168.10.163:3000/mock/216/logaudit/sql/getSqlDetail');
+        a.then(res=>{
+            console.log(1)
+            console.log(res)
+            return b.then()
+        }).then(function(ress){
+            console.log(2)
+            console.log(ress)
+        })
+    </script>
+</body>
+
+</html>
